@@ -1,9 +1,9 @@
 import React from 'react'
-import './HomePage.scss'
+import './home.scss'
 
-const HomePage = () => (
+const Home = () => (
   <div className='homepage'>
-    <div className="directory-menu">
+    <div className="menuList">
       <div className="menu-item">
         <div className="content">
           <h1 className="title">HATS</h1>
@@ -42,4 +42,4 @@ const HomePage = () => (
   </div>
 )
 
-export default HomePage
+export default Home
