@@ -22,3 +22,11 @@ const Navbar = () => (
 )
 
 export default Navbar
+
+
+/*
+* import { ReactComponent as Logo }
+
+- it's a new special syntax when importing SVG in React
+- it tells Create React App that you want a React component that renders an SVG
+*/
