@@ -2,6 +2,7 @@ import React from 'react'
 
 import './signIn.scss'
 import FormInput from '../formInput/formInput'
+import Button from '../button/button'
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -58,7 +59,7 @@ class SignIn extends React.Component {
             handleChange={this.handleChange}
           />
 
-          <input type='submit' value='Submit' />
+          <Button type='submit'>Sign In</Button>
         </form>
       </div>
     )
