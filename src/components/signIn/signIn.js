@@ -60,11 +60,13 @@ class SignIn extends React.Component {
             handleChange={this.handleChange}
           />
 
-          <Button type='submit'>Sign In</Button>
-          <Button onClick={signInWithGoogle}>
-            {' '}
-            Sign In with Google{' '}
-          </Button>
+          <div className="buttons">
+            <Button type='submit'>Sign In</Button>
+            <Button onClick={signInWithGoogle} isGoogleSignIn>
+              {' '}
+              Sign In with Google{' '}
+            </Button>
+          </div>
         </form>
       </div>
     )
