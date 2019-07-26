@@ -63,3 +63,72 @@ provider.setCustomParameters({ prompt: 'select_account' }) // we always want to 
 export const signInWithGoogle = () => auth.signInWithPopup(provider) // there are many sign in (like Facebook, Twitter etc.), but we want only Google
 
 export default firebase
+
+
+
+
+
+/*
+
+Firestore returns us two types of objects, even if nothing exists from the query: references and snapshots 
+They can be either Document or Collection versions.
+
+
+* queryReference 
+- is an object that represents the “current” place in the database that we are querying
+- does not have the actual data of the collection or document
+- It instead has properties that tell us details about it, or the method to get the Snapshot object which gives us the data we are looking for.
+
+```
+firestore.doc(‘/users/:userId’);
+firestore.collections(‘/users’);
+```
+
+
+* DocumentReference vs CollectionReference
+We use documentRef objects to perform our CRUD methods (create, retrieve, update, delete). 
+The documentRef methods are .set(), .get(), .update() and .delete() respectively
+
+We can also add documents to collections using the collectionRef object using the .add() method. 
+
+```
+collectionRef.add({
+  value: prop
+})
+```
+
+We get the snapshotObject from the referenceObject using the .get() method. 
+
+```
+documentRef.get()
+``` 
+which returns a documentSnapshot object;
+
+or 
+
+```
+collectionRef.get()
+``` 
+which returns a querySnapshot object.
+
+
+* documentSnapshot
+We get a documentSnapshot object from our documentReference object.
+
+The documentSnapshot object allows us to check if a document exists at this query 
+using the .exists property which returns a boolean.
+
+We can also get the actual properties on the object by calling
+the .data() method, which returns us a JSON object of the document.
+
+
+* querySnapshot
+We get a querySnapshot object from our collectionReference object. 
+
+We can check if there are any documents in the collection by calling
+the .empty property which returns a boolean.
+
+We can get all the documents in the collection by calling the .docs property.
+It returns an array of our documents as documentSnapshot objects.
+
+*/
