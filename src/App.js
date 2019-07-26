@@ -22,9 +22,12 @@ class App extends React.Component {
 
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      // if userAuth is not null (run code only if user is signing in) 
       if (userAuth) {
+        // if a document exists, get back the userRef otherwise make a new document
         const userRef = await createUserProfileDocument(userAuth)
 
+        // listen to userRef for any changes to the user data and set the state to the current data
         userRef.onSnapshot(snapShot => {
           this.setState({
             currentUser: {
@@ -33,9 +36,9 @@ class App extends React.Component {
             }
           })
         })
-      } else {
+      } else { // if user signs out
         this.setState({
-          currentUser: userAuth
+          currentUser: userAuth // same as currentUser: null
         })
       }
     })
