@@ -14,6 +14,42 @@ const config = {
   appId: "1:389919018804:web:579d1af62111d5a8"
 }
 
+// async because we make an API request
+// userAuth is the object that we get from the auth library
+// additionalData that we are gonna need later for the signup
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  // * if the user auth object does not exist, then exit from this function
+  if (!userAuth) return
+
+  // * if userAuth exists, we want to query inside Firestore doc to see if it already exists
+  // uid --> it's a dynamic user id that Google generates when the user authenticates with 'Sign In with Google'
+  const userRef = firestore.doc(`users/${userAuth.uid}`)
+
+  const snapShot = await userRef.get()
+
+  // * if there is no user, create a new one
+  if (!snapShot.exists) {
+
+    // * define the data that we want to store (name, email, time)
+    const { displayName, email } = userAuth
+    const createdAt = new Date()
+
+    // * async request to DB to store the data
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      })
+    } catch (error) {
+      console.log('Error creating user: ', error.message)
+    }
+  }
+
+  return userRef
+}
+
 firebase.initializeApp(config)
 
 // export auth and db
