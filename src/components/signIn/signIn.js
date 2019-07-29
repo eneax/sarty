@@ -24,6 +24,7 @@ class SignIn extends React.Component {
     try {
       await auth.signInWithEmailAndPassword(email, password)
 
+      // if the auth.signInWithEmailAndPassword() succeeds, we want to clear the state
       this.setState({
         email: '',
         password: ''
