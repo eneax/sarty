@@ -52,7 +52,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar currentUser={this.state.currentUser} />
+        <Navbar />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/shop' component={Shop} />

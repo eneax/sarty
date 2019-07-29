@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import './navbar.scss'
 import { ReactComponent as Logo } from '../../images/crown.svg'
@@ -27,7 +28,14 @@ const Navbar = ({ currentUser }) => (
   </div>
 )
 
-export default Navbar
+const mapStateToProps = (state) => ({ // state = rootReducer
+  currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(Navbar)
+
+
+
 
 
 /*
@@ -35,4 +43,24 @@ export default Navbar
 
 - it's a new special syntax when importing SVG in React
 - it tells Create React App that you want a React component that renders an SVG
+*/
+
+
+
+/* 
+* connect
+
+- it's a higher order component (HOC) that lets us modify our component so that we can have access to redux
+- HOC take a component and return a super-powerful component
+- its first argument is mapStateToProps
+*/
+
+
+
+/*
+* mapStateToProps
+
+- it's a function that allows us to access the state, with the state being our rootReducer
+- it returns an object, where the name of the property will be the actual property we pass in and the value will be the value
+
 */
