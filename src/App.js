@@ -72,3 +72,27 @@ export default connect(null, mapDispatchToProps)(App)
 - onAuthStateChanged() is a method on the auth library
 - we use it to keep track of the user state (if he/she is logged in or not)
 */
+
+
+
+/* 
+* mapDispatchToProps()
+
+- it's a function that gets a dispatch property
+- it returns an object, where the prop name will be whatever props we pass in, 
+  that dispatches the new action that we are trying to pass (setCurrentUser)
+- in this case it is null, because we don't need any mapStateToProps;
+  since App doesn't need the currentUser. 
+- It only sets the value of currentUser, while navbar.js get the value and displays the view
+*/
+
+
+
+/*
+* dispatch
+
+- it is a way for redux to know that whatever object you are passing to dispatch, 
+  it's going to be an action object that dispatch will pass to the reducer
+- we basically invoke setCurrentUser() with the user that will be used as a payload
+- thanks to dispatch, we don't need anymore constructor, super, this.state and this.setState
+*/
