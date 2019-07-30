@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
@@ -49,18 +49,26 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/shop' component={Shop} />
-          <Route path='/signIn' component={Sign} />
+          <Route exact path='/signIn' render={
+            () => this.props.currentUser 
+              ? <Redirect to='/' />
+              : <Sign />
+          } />
         </Switch>
       </div>
     );
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+})
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user))
 });
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 
 
@@ -81,8 +89,7 @@ export default connect(null, mapDispatchToProps)(App)
 - it's a function that gets a dispatch property
 - it returns an object, where the prop name will be whatever props we pass in, 
   that dispatches the new action that we are trying to pass (setCurrentUser)
-- in this case it is null, because we don't need any mapStateToProps;
-  since App doesn't need the currentUser. 
+- if it is null, it means that we don't need to get any state (we are only setting it)
 - It only sets the value of currentUser, while navbar.js get the value and displays the view
 */
 
