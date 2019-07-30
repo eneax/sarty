@@ -1,5 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import { setCurrentUser } from './redux/user/userActions'
 
 import './App.css';
 import Navbar from './components/navbar/navbar'
@@ -7,20 +11,13 @@ import Home from './pages/home/home'
 import Shop from './pages/shop/shop'
 import Sign from './pages/sign/sign'
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      currentUser: null
-    }
-  }
-
   unsubscribeFromAuth = null
 
   componentDidMount() {
+    const { setCurrentUser } = this.props
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       // if userAuth is not null (run code only if user is signing in) 
       if (userAuth) {
@@ -29,17 +26,13 @@ class App extends React.Component {
 
         // listen to userRef for any changes to the user data and set the state to the current data
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
+          setCurrentUser({ // setCurrentUser = this.setState
+            id: snapShot.id,
+            ...snapShot.data()
           })
         })
       } else { // if user signs out
-        this.setState({
-          currentUser: userAuth // same as currentUser: null
-        })
+        setCurrentUser(userAuth)
       }
     })
   }
@@ -63,7 +56,14 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(App)
+
+
+
 
 
 /*
@@ -71,5 +71,4 @@ export default App;
 
 - onAuthStateChanged() is a method on the auth library
 - we use it to keep track of the user state (if he/she is logged in or not)
-
 */
