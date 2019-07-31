@@ -6,6 +6,7 @@ import './navbar.scss'
 import { ReactComponent as Logo } from '../../images/crown.svg'
 import { auth } from '../../firebase/firebase.utils'
 import CartIcon from '../cartIcon/cartIcon'
+import CartDropdown from '../cartDropdown/cartDropdown'
 
 const Navbar = ({ currentUser }) => (
   <div className='navbar'>
@@ -27,6 +28,8 @@ const Navbar = ({ currentUser }) => (
       }
       <CartIcon />
     </div>
+
+    <CartDropdown />
   </div>
 )
 
