@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import './navbar.scss'
 import { ReactComponent as Logo } from '../../images/crown.svg'
 import { auth } from '../../firebase/firebase.utils'
+import CartIcon from '../cartIcon/cartIcon'
 
 const Navbar = ({ currentUser }) => (
   <div className='navbar'>
@@ -24,6 +25,7 @@ const Navbar = ({ currentUser }) => (
           ? <div className='option' onClick={() => auth.signOut()}>Sign Out</div>
           : <Link className='option' to='/signIn'>Sign In</Link>
       }
+      <CartIcon />
     </div>
   </div>
 )
