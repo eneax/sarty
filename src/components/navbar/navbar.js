@@ -8,7 +8,7 @@ import { auth } from '../../firebase/firebase.utils'
 import CartIcon from '../cartIcon/cartIcon'
 import CartDropdown from '../cartDropdown/cartDropdown'
 
-const Navbar = ({ currentUser }) => (
+const Navbar = ({ currentUser, hidden }) => (
   <div className='navbar'>
     <Link className='logo-container' to='/'>
       <Logo className='logo' />
@@ -29,12 +29,16 @@ const Navbar = ({ currentUser }) => (
       <CartIcon />
     </div>
 
-    <CartDropdown />
+    {
+      // toggle CartDropdown
+      hidden ? null : <CartDropdown />
+    }
   </div>
 )
 
 const mapStateToProps = (state) => ({ // state = rootReducer
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser,
+  hidden: state.cart.hidden,
 })
 
 export default connect(mapStateToProps)(Navbar)
