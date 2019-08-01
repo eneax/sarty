@@ -15,7 +15,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case CartActionTypes.ADD_ITEM:
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload] // spread the previous values into the array + add new values with action.payload
+        cartItems: [...state.cartItems, action.payload] // spread the previous values into the array + add new values with action.payload and return new array
       }
     default:
       return state
