@@ -43,11 +43,12 @@ class MenuList extends React.Component {
   render() {
     return (
       <div className='menu-list'>
-        {this.state.sections.map(({id, title, imageUrl}) => (
+        {this.state.sections.map(({id, title, imageUrl, size}) => (
           <MenuItem 
             key={id}
             title={title}
             imageUrl={imageUrl}
+            size={size}
           />
         ))}
       </div>
