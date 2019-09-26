@@ -22,9 +22,24 @@ class App extends React.Component {
   unsubscribeFromAuth = null
 
   componentDidMount() {
-    // Make app aware of the user state (if it's logged in or not)
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user)
+    // Store user data in our app
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+
+        userRef.onSnapshot((snapShot) => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          })
+        })
+      } else {
+        this.setState({
+          currentUser: userAuth
+        })
+      }
     })
   }
 
