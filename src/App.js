@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import { auth } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 import './App.css'
 import Header from './components/header/header'
 import HomePage from './pages/homepage/homepage'
@@ -23,11 +23,8 @@ class App extends React.Component {
 
   componentDidMount() {
     // Make app aware of the user state (if it's logged in or not)
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({
-        currentUser: user
-      })
-      console.log(user)
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      createUserProfileDocument(user)
     })
   }
 
