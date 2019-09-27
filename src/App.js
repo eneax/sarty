@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { setCurrentUser } from './redux/user/userActions'
@@ -46,26 +46,38 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
-          <Route path='/sign' component={Sign} />
+          <Route 
+            exact 
+            path='/sign' 
+            render={
+              () => this.props.currentUser 
+                ? (<Redirect to='/' />) 
+                : (<Sign/>)
+            } 
+          />
         </Switch>
       </div>
     )
   }
 }
 
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser
+})
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 
 
 
 /*
-* connect(null, mapDispatchToProps)
-- null because we don't need mapStateToProps, since App doesn't need currentUser
+* connect(mapStateToProps, mapDispatchToProps)
+- mapStateToProps is needed in order to get the currentUser from the store
 - mapDispatchToProps gets a dispatch property and returns an object where the prop name will be whatever prop
   we want to pass in that dispatches the new action that we are trying to pass
 - dispatch() takes an action object an passes it to every reducer
