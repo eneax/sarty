@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import { auth } from '../../firebase/firebase.utils'
 import './header.scss'
@@ -24,4 +25,18 @@ const Header = ({ currentUser }) => (
   </div>
 )
 
-export default Header
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(Header)
+
+
+
+
+
+/*
+* connect() is a HOC
+- it lets us modify the component so that we have access to redux
+- it takes a mapStateToProps function, which allows us to get the piece of the state we are interested in
+*/ 
