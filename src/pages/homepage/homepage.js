@@ -1,13 +1,13 @@
 import React from 'react'
 
 import './homepage.scss'
-import MenuList from '../../components/menuList/menuList'
+import Directory from '../../components/directory/directory'
 
 
 const Home = () => {
   return (
     <div className='homepage'>
-      <MenuList />
+      <Directory />
     </div>
   )
 }
