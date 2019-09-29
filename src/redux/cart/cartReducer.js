@@ -19,6 +19,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload)
       }
+    case CartActionTypes.CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload.id
+          // returns a news array with all the cartItems that do not match the action.payload.id (the item is filtered out)
+        )
+      }
     default:
       return state
   }
