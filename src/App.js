@@ -6,11 +6,13 @@ import { createStructuredSelector } from 'reselect'
 import { setCurrentUser } from './redux/user/userActions'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 import { selectCurrentUser } from './redux/user/userSelectors'
+
 import './App.css'
 import Header from './components/header/header'
 import HomePage from './pages/homepage/homepage'
 import ShopPage from './pages/shop/shop'
 import Sign from './pages/sign/sign'
+import Checkout from './pages/checkout/checkout'
 
 
 class App extends React.Component {
@@ -57,6 +59,7 @@ class App extends React.Component {
                 : (<Sign/>)
             } 
           />
+          <Route exact path='/checkout' component={Checkout} />
         </Switch>
       </div>
     )
