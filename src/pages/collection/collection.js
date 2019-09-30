@@ -4,15 +4,25 @@ import { connect } from 'react-redux'
 import { selectCollection } from '../../redux/shop/shopSelectors'
 
 import './collection.scss'
+import CollectionItem from '../../components/collectionItem/collectionItem'
 
 
 const Collection = ({ collection }) => {
-  console.log(collection)
+  const { title, items } = collection
+  
   return (
     <div className='collection-page'>
-      <h2>COLLECTION PAGE</h2>
+      <h2 className='title'>{title}</h2>
       
-      
+      <div className='items'>
+        {items.map((item) => (
+          <CollectionItem 
+            className='collection-item'
+            key={item.id}
+            item={item} 
+          />
+        ))}
+      </div>
     </div>
   )
 }
