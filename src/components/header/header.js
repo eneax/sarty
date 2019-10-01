@@ -6,7 +6,7 @@ import { auth } from '../../firebase/firebase.utils'
 import { selectCurrentUser } from '../../redux/user/userSelectors'
 import { selectCartHidden } from '../../redux/cart/cartSelectors'
 
-import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink, OptionDiv } from './headerStyles'
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './headerStyles'
 import { ReactComponent as Logo} from '../../assets/crown.svg'
 import CartIcon from '../cartIcon/cartIcon'
 import CartDropdown from '../cartDropdown/cartDropdown'
@@ -23,7 +23,7 @@ const Header = ({ currentUser, hidden }) => (
       <OptionLink to='/contact'>CONTACT</OptionLink>
       {
         currentUser
-          ? <OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
+          ? <OptionLink as='div' onClick={() => auth.signOut()}>SIGN OUT</OptionLink>
           : <OptionLink to='/sign'>SIGN IN</OptionLink>
       }
       <CartIcon />
