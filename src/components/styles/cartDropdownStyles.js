@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import CustomButton from '../customButton/customButton'
+import CustomButton from '../customButton'
 
 
 export const CartDropdownContainer = styled.div`

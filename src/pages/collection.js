@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { selectCollection } from '../../redux/shop/shopSelectors'
+import { selectCollection } from '../redux/shop/shopSelectors'
 
 import {
   CollectionPageContainer,
   CollectionTitle,
   CollectionItemsContainer
-} from './collectionStyles'
-import CollectionItem from '../../components/collectionItem/collectionItem'
+} from '../components/styles/collectionStyles'
+import CollectionItem from '../components/collectionItem'
 
 
 const Collection = ({ collection }) => {

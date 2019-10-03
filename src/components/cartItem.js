@@ -3,7 +3,7 @@ import React from 'react'
 import {
   CartItemContainer,
   ItemsDetails
-} from './cartItemStyles'
+} from './styles/cartItemStyles'
 
 
 const CartItem = ({ item: { name, price, imageUrl, quantity } }) => (

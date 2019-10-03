@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import { selectCollectionsForPreview } from '../../redux/shop/shopSelectors'
+import { selectCollectionsForPreview } from '../redux/shop/shopSelectors'
 
-import { CollectionsOverviewContainer } from './collectionsOverviewStyles'
-import CollectionPreview from '../collectionPreview/collectionPreview'
+import { CollectionsOverviewContainer } from './styles/collectionsOverviewStyles'
+import CollectionPreview from './collectionPreview'
 
 
 const CollectionsOverview = ({ collections }) => {

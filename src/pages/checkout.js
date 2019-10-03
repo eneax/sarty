@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import { selectCartItems, selectCartTotal } from '../../redux/cart/cartSelectors'
+import { selectCartItems, selectCartTotal } from '../redux/cart/cartSelectors'
 
 import {
   CheckoutPageContainer,
@@ -10,9 +10,9 @@ import {
   HeaderBlockContainer,
   WarningContainer,
   TotalContainer
-} from './checkoutStyles'
-import CheckoutItem from '../../components/checkoutItem/checkoutItem'
-import StripeCheckoutButton from '../../components/stripeButton/stripeButton'
+} from '../components/styles/checkoutStyles'
+import CheckoutItem from '../components/checkoutItem'
+import StripeCheckoutButton from '../components/stripeButton'
 
 
 const Checkout = ({ cartItems, total }) => {

@@ -7,7 +7,8 @@ import {
   ContentContainer,
   ContentTitle,
   ContentSubtitle
-} from './menuItemStyles';
+} from './styles/menuItemStyles'
+
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
   <MenuItemContainer

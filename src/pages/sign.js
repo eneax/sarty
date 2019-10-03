@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { SignContainer } from './signStyles'
-import SignIn from '../../components/signIn/signIn'
-import SignUp from '../../components/signUp/signUp'
+import { SignContainer } from '../components/styles/signStyles'
+import SignIn from '../components/signIn'
+import SignUp from '../components/signUp'
 
 
 const Sign = () => {

@@ -2,14 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import { auth } from '../../firebase/firebase.utils'
-import { selectCurrentUser } from '../../redux/user/userSelectors'
-import { selectCartHidden } from '../../redux/cart/cartSelectors'
+import { auth } from '../firebase/firebase.utils'
+import { selectCurrentUser } from '../redux/user/userSelectors'
+import { selectCartHidden } from '../redux/cart/cartSelectors'
 
-import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './headerStyles'
-import { ReactComponent as Logo} from '../../assets/crown.svg'
-import CartIcon from '../cartIcon/cartIcon'
-import CartDropdown from '../cartDropdown/cartDropdown'
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './styles/headerStyles'
+import { ReactComponent as Logo} from '../assets/crown.svg'
+import CartIcon from './cartIcon'
+import CartDropdown from './cartDropdown'
 
 
 const Header = ({ currentUser, hidden }) => (

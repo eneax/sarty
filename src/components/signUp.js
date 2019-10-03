@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils'
+import { auth, createUserProfileDocument } from '../firebase/firebase.utils'
 
 import {
   SignUpContainer,
   SignUpTitle
-} from './signUpStyles'
-import FormInput from '../formInput/formInput'
-import CustomButton from '../customButton/customButton'
+} from './styles/signUpStyles'
+import FormInput from './formInput'
+import CustomButton from './customButton'
 
 
 class SignUp extends React.Component {

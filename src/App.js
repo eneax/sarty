@@ -8,11 +8,11 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 import { selectCurrentUser } from './redux/user/userSelectors'
 
 import './App.css'
-import Header from './components/header/header'
-import HomePage from './pages/homepage/homepage'
-import ShopPage from './pages/shop/shop'
-import Sign from './pages/sign/sign'
-import Checkout from './pages/checkout/checkout'
+import Header from './components/header'
+import HomePage from './pages/homepage'
+import ShopPage from './pages/shop'
+import Sign from './pages/sign'
+import Checkout from './pages/checkout'
 
 
 class App extends React.Component {

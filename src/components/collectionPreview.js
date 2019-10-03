@@ -4,8 +4,8 @@ import {
   CollectionPreviewContainer,
   TitleContainer,
   PreviewContainer
-} from './collectionPreviewStyles'
-import CollectionItem from '../collectionItem/collectionItem'
+} from './styles/collectionPreviewStyles'
+import CollectionItem from './collectionItem'
 
 
 const CollectionPreview = ({ title, items }) => {
