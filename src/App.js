@@ -7,7 +7,8 @@ import { setCurrentUser } from './redux/user/userActions'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 import { selectCurrentUser } from './redux/user/userSelectors'
 
-import './App.css'
+import GlobalStyles from './components/styles/globalStyles'
+
 import Header from './components/header'
 import HomePage from './pages/homepage'
 import ShopPage from './pages/shop'
@@ -46,6 +47,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <GlobalStyles />
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
