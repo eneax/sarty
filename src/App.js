@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import { setCurrentUser } from './redux/user/userActions'
-import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 import { selectCurrentUser } from './redux/user/userSelectors'
-import { selectCollectionsForPreview } from './redux/shop/shopSelectors'
 
 import GlobalStyles from './components/styles/globalStyles'
 
@@ -22,7 +21,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null
 
   componentDidMount() {
-    const { setCurrentUser, collectionsArray } = this.props
+    const { setCurrentUser } = this.props
     // Store user data in our app
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -35,11 +34,8 @@ class App extends React.Component {
           })
         })
       } 
-
+        
       setCurrentUser(userAuth) // null
-
-      // from the collectionsArray I want only title and items
-      addCollectionAndDocuments('collections', collectionsArray.map(({ title, items }) => ({ title, items })))
     })
   }
 
@@ -73,8 +69,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  collectionsArray: selectCollectionsForPreview
+  currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = (dispatch) => ({
