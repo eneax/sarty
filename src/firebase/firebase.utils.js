@@ -27,6 +27,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     const createdAt = new Date()
 
     try {
+      // creates a new document object inside the db
       await userRef.set({
         displayName,
         email,
@@ -64,20 +65,28 @@ export default firebase
 
 
 /*
-Firestore returns us two types of objects, even if nothing exists from the query: references and snapshots.
-They can be either Document or Collection versions.
 
-* queryReference 
+* Query 
+- it's a request we make to firestore (db) to give us something from the database
+
+* Firestore 
+- it returns us two types of objects (even if nothing exists from the query): references and snapshots.
+- They can be either Document or Collection versions.
+
+* queryReference object
 - is an object that represents the “current” place in the database that we are querying
-- does not have the actual data of the collection or document
-- It instead has properties that tell us details about it, or the method to get the Snapshot object which gives us the data we are looking for.
 
-```
-firestore.doc(‘/users/:userId’);
-firestore.collections(‘/users’);
-```
+  ```
+  firestore.doc(‘/users/:userId’);
+  firestore.collections(‘/users’);
+  ```
 
-* DocumentReference vs CollectionReference
+- it does not have the actual data of the collection or document
+- it has properties that tell us details about it, or the method to get the Snapshot object which gives us the data we are looking for.
+
+
+
+* 2 types of reference object: DocumentReference vs CollectionReference
 We use documentRef objects to perform our CRUD methods (create, retrieve, update, delete). 
 The documentRef methods are .set(), .get(), .update() and .delete() respectively
 We can also add documents to collections using the collectionRef object using the .add() method.
@@ -104,6 +113,7 @@ collectionRef.get()
 
 which returns a querySnapshot object.
 
+
 * documentSnapshot
 We get a documentSnapshot object from our documentReference object.
 The documentSnapshot object allows us to check if a document exists at this query 
@@ -111,7 +121,7 @@ using the .exists property which returns a boolean.
 We can also get the actual properties on the object by calling
 the .data() method, which returns us a JSON object of the document.
 
-* querySnapshot
+* querySnapshot (or collectionSnapshot)
 We get a querySnapshot object from our collectionReference object. 
 We can check if there are any documents in the collection by calling
 the .empty property which returns a boolean.
