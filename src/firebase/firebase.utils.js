@@ -13,6 +13,9 @@ const config = {
   appId: "1:389919018804:web:579d1af62111d5a8"
 }
 
+firebase.initializeApp(config)
+
+
 // store userAuth into firestore db
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return
@@ -42,6 +45,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef
 }
 
+
 // add collection to db
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey)
@@ -59,7 +63,21 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 }
 
 
-firebase.initializeApp(config)
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map((doc) => {
+    const { title, items } = doc.data()
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    }
+  })
+
+  console.log(transformedCollection)
+}
+
 
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()
