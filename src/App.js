@@ -91,4 +91,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 * setCurrentUser replaces this.setState()
-*/ 
+
+
+* Observable
+- it's a piece of code that wraps around a stream of events (or a stream of data)
+
+* Observer
+- it's a piece of code that has three function calls on it: next, error, complete
+
+* Next
+- a next call is the call that you execute whenever a new event happens 
+
+* Error
+- something that we do when an error occurs
+
+* Complete
+- it's an optional call that will occur if the stream is finished
+- it cannot happen in Firebase, because it is a live database, where updates can always happen
+
+* Subscription
+- it's a way to tie together the observer with the observer's stream of events
+
+*/
