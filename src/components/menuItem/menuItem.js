@@ -27,4 +27,7 @@ export default withRouter(MenuItem);
   * withRouter 
   - It's a higher order component (HOC)
   - It returns a MenuItem component with access to 'history', 'location', 'match'
+
+  - 'history.push' is the equivalent of a React Router Link
+  - 'match.url' matches whatever url we'll have up to the 'linkUrl' prop
 */ 
