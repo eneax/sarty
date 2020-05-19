@@ -7,7 +7,7 @@ function App() {
     <div>
       <HomePage/>
     </div>
-  )
+  );
 }
 
 export default App;

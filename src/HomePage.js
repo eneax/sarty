@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './HomePageStyles.scss';
 
 const HomePage = () => {
   return (
@@ -36,7 +37,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default HomePage;
