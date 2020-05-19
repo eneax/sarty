@@ -1,9 +1,14 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
+
 import './menuItemStyles.scss'
 
-const MenuItem = ({ title, imageUrl, size }) => {
+const MenuItem = ({ title, imageUrl, linkUrl, size, history, match }) => {
   return (
-    <div className={`menuItem ${size}`}>
+    <div 
+      className={`menuItem ${size}`}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
       <div 
         style={{ backgroundImage: `url(${imageUrl})` }}
         className='backgroundImage'
@@ -16,4 +21,10 @@ const MenuItem = ({ title, imageUrl, size }) => {
   )
 }
 
-export default MenuItem;
+export default withRouter(MenuItem);
+
+/*
+  * withRouter 
+  - It's a higher order component (HOC)
+  - It returns a MenuItem component with access to 'history', 'location', 'match'
+*/ 
