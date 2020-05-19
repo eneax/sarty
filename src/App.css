@@ -2,3 +2,8 @@ body {
   font-family: 'Open Sans Condensed', sans-serif;
   padding: 2rem 4rem;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
