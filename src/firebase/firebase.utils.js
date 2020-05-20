@@ -13,6 +13,35 @@ const firebaseConfig = {
   measurementId: "G-1QYWB889TE"
 };
 
+// get user from 'auth' and store it in 'firestore'
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+
+  // Get snapShot from db
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = await userRef.get();
+
+  // Check if authUser already exists in Firestore. 
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    // If `authUser` doesn't exist already, create a new one
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      });
+    } catch (error) {
+      console.error('Error logging user: ', error.message);
+    }
+  }
+
+  return userRef;
+}
+
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
