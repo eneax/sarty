@@ -1,0 +1,70 @@
+# Firebase Notes
+
+Firebase allows you to build apps without managing infrastructure.
+It provides functionality like `analytics`, `databases`, `messaging` and `crash reporting`,
+so you can just focus on your users (front-end features).
+
+## Firestore
+
+In Firebase, the database is called Firestore and it's a `NoSQL` db (basically, one gigantic `json` object).
+There are two types of data in our database: `collection` and `documents`.
+
+A `collection` is a group (array) of `documents`.
+Then, each document can contain properties that point to other collections.
+
+For instance, if we create a `users` collection, it'll contain a unique `document` with a unique ID for each user.
+This `unique document` can be the `single user Enea`.
+
+Then the `single user Enea` can contain inside another collection, for instance, `cartItems` which will contain a `unique document` with property name `Blue Hat`.
+
+```json
+{
+  "users": [
+    "XF8Cgyo1GwEJrrKMXxjQ": {
+      "displayName": "Enea",
+      "cartItems": [
+        "FBPDZOHDuQJBDy6oksqr": {
+          "name": "Leather Jacket"
+        },
+        "exNV2frVTWRlk7MnEmr1": {
+          "name": "Blue Hat"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### How to query Firestore
+
+Once we have created our `collections` and `documents`, we need to query the db in order to get data out of it.
+
+```js
+// import firebase and firestore
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+
+const firestore = firebase.firestore()
+
+// get 'users' collection
+firestore.collection('users')
+
+// get specific 'document' inside 'users' collection
+firestore.collection('users').doc('XF8Cgyo1GwEJrrKMXxjQ')
+
+// get the 'cartItems' collection of a specific user
+firestore
+  .collection('users')
+  .doc('XF8Cgyo1GwEJrrKMXxjQ')
+  .collection('cartItems')
+
+// get 'Blue Hat' document
+firestore
+  .collection('users')
+  .doc('XF8Cgyo1GwEJrrKMXxjQ')
+  .collection('cartItems')
+  .doc('exNV2frVTWRlk7MnEmr1')
+
+// alternative syntax to get the 'Blue Hat' document
+firestore.doc('/users/XF8Cgyo1GwEJrrKMXxjQ/cartItems/exNV2frVTWRlk7MnEmr1')
+```
