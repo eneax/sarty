@@ -1,4 +1,4 @@
-# Firebase Notes
+# Firebase
 
 Firebase allows you to build apps without managing infrastructure.
 It provides functionality like `analytics`, `databases`, `messaging` and `crash reporting`,
@@ -68,3 +68,35 @@ firestore
 // alternative syntax to get the 'Blue Hat' document
 firestore.doc('/users/XF8Cgyo1GwEJrrKMXxjQ/cartItems/exNV2frVTWRlk7MnEmr1')
 ```
+
+## QueryReference and QuerySnapshot
+
+A query is a request we make to `firestore` to give us something (`collection`, `document`, etc.) from the database.
+Firestore always returns us two types of objects: `references` and `snapshots`; even if nothing exists from that query.
+This two types of objects can be either `Document` or `Collection` versions.
+
+`QueryReference` is an object that represents the 'current' place in the database that we're querying.
+It's basically the result of calling:
+
+```js
+firestore.doc('/users/:userId')
+firestore.collection('/users')
+```
+
+It's important to know that the `queryReference` object does not have the actual data of the `collection` or `document`.
+It has properties that tell us details about it (i.e. the ID or the path) or the method to get the Snapshot object.
+The `Snapshot object` gives us the actual data we are looking for.
+
+## DocumentReference vs CollectionReference
+
+We use `documentRef` to perform the CRUD methods (create, retrieve, update, delete).
+The `documentRef` methods are `.set()`, `.get()`, `.update()`, `.delete()`.
+
+We can add `documents` to collections using the `collectionRef` object and the `.add()` method: `collectionRef.add({ value: prop })`.
+
+We get the `snapshot object` from the `reference object` using the `.get()` method: `documentRef.get()` or `collectionRef.get()`.
+
+Keep in mind that:
+
+- `documentRef` returns a `documentSnapshot` object
+- `collectionRef` returns a `querySnapshot` object
