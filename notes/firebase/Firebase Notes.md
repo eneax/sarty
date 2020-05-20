@@ -100,3 +100,9 @@ Keep in mind that:
 
 - `documentRef` returns a `documentSnapshot` object
 - `collectionRef` returns a `querySnapshot` object
+
+## DocumentSnapshot
+
+The `documentSnapshot` allows us to check if a document exists at this query using the `.exists()` property, which returns a `boolean`.
+
+We can also get the actual properties on the object by calling the `.data()` method, which returns us a JSON object of the document.
