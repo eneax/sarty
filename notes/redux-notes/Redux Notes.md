@@ -32,9 +32,9 @@ Action --> Root Reducer --> Store --> React --> DOM changes
 An `action` is a real action that the user performs, like clicking a button or a dropdown.
 This action, made by the user, triggers a reducer. With Redux, we want all the actions to go through a reducer, instead of triggering an immediate DOM update.
 
-A `reducer` is a pure function that receives as an input an `action` and creates an output that is represented by a `store` update.
+A `reducer` is a pure function that receives as an input an `action` and creates an output that is represented by a `store` update. A reducer represents a 'slice of state'. Multiple reducers, with multiple pieces of state, make the `root reducer`, representing the app state.
 
-The `store` update notifies the UI library, `React`, that it needs to update the `DOM`, in order to present the new changes to the user.
+The `store` update notifies the UI library, `React`, that it needs to update the `DOM`, in order to present the new changes to the user. This happens with the store passing state as props down to the components that need it.
 
 ## The Flux Pattern
 
