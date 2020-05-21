@@ -27,7 +27,7 @@ Redux gives us a way to manage state in a predictable way thanks to the followin
 
 ## The Redux Flow
 
-Action --> Root Reducer --> Store --> React --> DOM changes
+Action --> Middleware --> Root Reducer --> Store --> React --> DOM changes
 
 An `action` is a real action that the user performs, like clicking a button or a dropdown.
 This action, made by the user, triggers a reducer. With Redux, we want all the actions to go through a reducer, instead of triggering an immediate DOM update.
@@ -81,3 +81,8 @@ We return a new object because we never modify the original state, plus we want 
 If the action `type` does not match, we just return the `currentState`, since we don't want to re-render anything.
 
 The `userReducer` function will return a new object that is going to be the new state of our `userReducer`.
+
+## Middleware
+
+A `middleware` is a piece of code that gets the action before it reaches the reducer.
+An example of middleware is the `redux-logger`. Its job is to log any action that gets fired, in addition to the state of the reducer before and after the action was performed.
