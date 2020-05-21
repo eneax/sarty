@@ -128,3 +128,28 @@ export const setCurrentUser = (user) => ({
   payload: user,
 })
 ```
+
+## connect
+
+`connect` is a HOC that let's us modify a component in order to give it access to Redux functionalities.
+It takes two arguments `mapStateToProps()` and `mapDispatchToProps`.
+
+### mapStateToProps
+
+`mapStateToProps` is a function that allows a component to access `state`, which is represented by the `rootReducer`.
+In the example below, we can see that `mapStateToProps` takes the `rootReducer` (or state) and returns an object that has a property called `currentUser` (just like the prop that we pas to the component) and a value equal to `user`, which references the `userReducer` which returns `currentUser`.
+
+```jsx
+import React from 'react';
+import { connect } from 'react-redux';
+
+const Header = ({ currentUser }) => (
+  ...
+);
+
+const mapStateToProps = ( state ) => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
+```
