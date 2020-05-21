@@ -13,6 +13,8 @@ const firebaseConfig = {
   measurementId: "G-1QYWB889TE"
 };
 
+firebase.initializeApp(firebaseConfig);
+
 // get user from 'auth' and store it in 'firestore'
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
@@ -41,8 +43,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   return userRef;
 }
-
-firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
