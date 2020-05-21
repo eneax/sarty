@@ -153,3 +153,24 @@ const mapStateToProps = ( state ) => ({
 
 export default connect(mapStateToProps)(Header);
 ```
+
+### mapDispatchToProps
+
+The second argument that we pass to `connect` is the function `mapDispatchToProps`.
+This function takes a `dispatch` property and returns an object where the prop name will be whatever prop we want to pass in that dispatches the new action that we are trying to pass.
+
+```jsx
+import React from 'react';
+import { connect } from 'react-redux';
+import { setCurrentUser } from './redux/user/userActions';
+
+class App extends React.Component {
+  ...
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(App);
+```
