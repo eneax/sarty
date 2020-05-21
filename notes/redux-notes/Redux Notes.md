@@ -82,7 +82,49 @@ If the action `type` does not match, we just return the `currentState`, since we
 
 The `userReducer` function will return a new object that is going to be the new state of our `userReducer`.
 
+Note: Every single reducer receives every single action that gets fired, even if those actions are not related to a particular reducer. That's why we've a `default` case inside the `switch` statement; so if there is no match the `currentState` will be returned.
+
 ## Middleware
 
 A `middleware` is a piece of code that gets the action before it reaches the reducer.
 An example of middleware is the `redux-logger`. Its job is to log any action that gets fired, in addition to the state of the reducer before and after the action was performed.
+
+## Provider
+
+The `Provider` is a component that we wrap around the entire application.
+It's the parent component of the entire application, since we want all the app components to have access to the `store` object.
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Provider } from 'react-redux'
+
+import store from './redux/store'
+
+import App from './App'
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
+  document.getElementById('root')
+)
+```
+
+## Root reducer
+
+The `root reducer` is the base reducer that combines together all the other reducers, or pieces of state into one single big object.
+
+## Action creator
+
+An action creator is just a function that returns an action (or object).
+
+```js
+export const setCurrentUser = (user) => ({
+  type: 'SET_CURRENT_USER',
+  payload: user,
+})
+```
