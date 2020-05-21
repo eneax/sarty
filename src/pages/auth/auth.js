@@ -1,12 +1,13 @@
 import React from 'react';
 
+import './authStyles.scss';
 import SignIn from '../../components/signIn/signIn';
+import SignUp from '../../components/signUp/signUp';
 
 const Auth = () => (
   <div className='auth'>
-    <h1>Authentication</h1>
-
     <SignIn />
+    <SignUp />
   </div>
 );
 

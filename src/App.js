@@ -34,7 +34,7 @@ class App extends React.Component {
               id: snapShot.id,
               ...snapShot.data()
             }
-          })
+          });
         });
       } else { // if the user logs out we set the currentUser to null
         this.setState({
