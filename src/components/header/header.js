@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './headerStyles.scss';
+import { auth } from '../../firebase/firebase.utils';
+
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 
-import { auth } from '../../firebase/firebase.utils';
+import './headerStyles.scss';
+import CartIcon from '../cartIcon/cartIcon';
 
 const Header = ({ currentUser }) => (
   <div className="header">
@@ -30,6 +32,7 @@ const Header = ({ currentUser }) => (
           SIGN IN
         </Link>
       )}
+      <CartIcon />
     </div>
   </div>
 );
