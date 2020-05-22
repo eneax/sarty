@@ -9,6 +9,7 @@ import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 import './headerStyles.scss';
 import CartIcon from '../cartIcon/cartIcon';
+import CartDropdown from '../cartDropdown/cartDropdown';
 
 const Header = ({ currentUser }) => (
   <div className="header">
@@ -34,6 +35,7 @@ const Header = ({ currentUser }) => (
       )}
       <CartIcon />
     </div>
+    <CartDropdown />
   </div>
 );
 
