@@ -5,7 +5,7 @@ import SignIn from '../../components/signIn/signIn';
 import SignUp from '../../components/signUp/signUp';
 
 const Auth = () => (
-  <div className='auth'>
+  <div className="auth">
     <SignIn />
     <SignUp />
   </div>

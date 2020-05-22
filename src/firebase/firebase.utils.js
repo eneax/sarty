@@ -3,17 +3,20 @@ import 'firebase/firestore'; // for the DB
 import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA6WGH7Fa8oFn5fTK10YVJv5fWlyodaLNE",
-  authDomain: "sarty-ex.firebaseapp.com",
-  databaseURL: "https://sarty-ex.firebaseio.com",
-  projectId: "sarty-ex",
-  storageBucket: "sarty-ex.appspot.com",
-  messagingSenderId: "886533999849",
-  appId: "1:886533999849:web:b1e61d49d290daafbc7478",
-  measurementId: "G-1QYWB889TE"
+  apiKey: 'AIzaSyA6WGH7Fa8oFn5fTK10YVJv5fWlyodaLNE',
+  authDomain: 'sarty-ex.firebaseapp.com',
+  databaseURL: 'https://sarty-ex.firebaseio.com',
+  projectId: 'sarty-ex',
+  storageBucket: 'sarty-ex.appspot.com',
+  messagingSenderId: '886533999849',
+  appId: '1:886533999849:web:b1e61d49d290daafbc7478',
+  measurementId: 'G-1QYWB889TE',
 };
 
 firebase.initializeApp(firebaseConfig);
+
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
 
 // get user from 'auth' and store it in 'firestore'
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -23,7 +26,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   const snapShot = await userRef.get();
 
-  // Check if authUser already exists in Firestore. 
+  // Check if authUser already exists in Firestore.
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -34,7 +37,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       console.error('Error logging user: ', error.message);
@@ -42,10 +45,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
 
   return userRef;
-}
-
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+};
 
 // trigger the Google sign-in popup
 const provider = new firebase.auth.GoogleAuthProvider();
