@@ -174,3 +174,26 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(null, mapDispatchToProps)(App);
 ```
+
+## Memoization
+
+Memoization is a specific form of caching that involves caching the return value of a function based on its parameters.
+
+Example:
+
+```js
+let cache = {}
+
+function memoizedAddTo80(n) {
+  if (n in cache) {
+    return cache[n]
+  } else {
+    console.log('loooong time')
+    cache[n] = n + 80
+    return cache[n]
+  }
+}
+
+console.log('1', memoizedAddTo80(5))
+console.log('2', memoizedAddTo80(5))
+```
