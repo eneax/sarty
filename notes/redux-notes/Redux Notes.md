@@ -197,3 +197,33 @@ function memoizedAddTo80(n) {
 console.log('1', memoizedAddTo80(5))
 console.log('2', memoizedAddTo80(5))
 ```
+
+## Selectors and reselect
+
+A selector is some code that gets a state as in the whole state object and then pulls off just a small portion
+or a slice of that state.
+We're computing a new value based off the state.
+
+```jsx
+import React from 'react'
+import { connect } from 'react-redux'
+
+const CartIcon = ({ itemCount }) => <span>{itemCount}</span>
+
+const mapStateToProps = (state) => ({
+  itemCount: state.cart.cartItems.reduce(
+    (acc, cartItem) => acc + cartItem.quantity,
+    0
+  ),
+})
+
+export default connect(mapStateToProps)(CartIcon)
+```
+
+This is very bad for performance, because we don't want to re- render the `CartIcon` component every time the state changes; especially if those state changes don't actually modify the parts of the state that our component cares about.
+
+Thus, if the `cartItems` values don't change and the output of the selector is still the same, we don't want to re-render our component.
+That's why we want to store or cache the value of what our selector is using to compute its value.
+This is also called `memoization` (or caching of the selector's value).
+
+We can achieve `memoization` using the `reselect` library.
