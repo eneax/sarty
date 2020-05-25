@@ -198,7 +198,7 @@ console.log('1', memoizedAddTo80(5))
 console.log('2', memoizedAddTo80(5))
 ```
 
-## Selectors and reselect
+## Selectors
 
 A selector is some code that gets a state as in the whole state object and then pulls off just a small portion
 or a slice of that state.
@@ -227,3 +227,44 @@ That's why we want to store or cache the value of what our selector is using to 
 This is also called `memoization` (or caching of the selector's value).
 
 We can achieve `memoization` using the `reselect` library.
+
+## reselect
+
+We can write two types of selector: `input selectors` and `output selector`.
+The first type, `input selector` does not use `createSelector` from the `reselect` library.
+An input selector is a function that takes the whole state and returns a slice of it (one layer deep usually).
+
+Example:
+
+```js
+// input selector
+const selectCart = (state) => state.cart
+```
+
+The second type, `output selector` uses `input selectors` and `createSelector` to build itself.
+In code, an output selector is made by using `createSelector` and passing it two arguments.
+The first argument is a collection (or array) of input selectors.
+The second argument is going to be a function that will return the value we want out of the selector.
+This function takes as argument each output of the input selector in the array.
+
+Basically, an output selector is like an input selector going more than one layer deep.
+
+Example:
+
+```js
+import { createSelector } from 'reselect'
+
+// input selector
+const selectCart = (state) => state.cart
+
+// output selector (it's also memoized)
+export const selectCartItems = createSelector(
+  [selectCart],
+  (cart) => cart.cartItems
+)
+
+export const selectCartItemsCount = createSelector(
+  [selectCartItems],
+  (cartItems) => cartItems.reduce((acc, cartItem) => acc + cartItem.quantity, 0)
+)
+```
