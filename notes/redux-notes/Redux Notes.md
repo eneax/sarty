@@ -268,3 +268,22 @@ export const selectCartItemsCount = createSelector(
   (cartItems) => cartItems.reduce((acc, cartItem) => acc + cartItem.quantity, 0)
 )
 ```
+
+The `reselect` library allows us also to combine selectors together.
+If in one of our components, we've to face a similar case like the code below:
+
+```js
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
+  hidden: selectCartHidden(state),
+})
+```
+
+we can combine the selectors, using `createStructuredSelector` (from `reselect`), which will pass `state` automatically to each selector:
+
+```js
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
+})
+```
