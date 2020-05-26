@@ -175,6 +175,31 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(App);
 ```
 
+One important thing to keep in mind while using `connect` and `mapDispatchToProps` is that, if we do not specify `mapDispatchToProps` inside of `connect`, it'll pass a `dispatch` property to our component automatically.
+
+Example:
+
+```jsx
+const CartDropdown = ({ history, dispatch }) => (
+  <div className="cartDropdown">
+    <CustomButton
+      onClick={() => {
+        history.push('/checkout')
+        dispatch(toggleCartHidden())
+      }}
+    >
+      GO TO CHECKOUT
+    </CustomButton>
+  </div>
+)
+
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+})
+
+export default withRouter(connect(mapStateToProps)(CartDropdown))
+```
+
 ## Memoization
 
 Memoization is a specific form of caching that involves caching the return value of a function based on its parameters.
