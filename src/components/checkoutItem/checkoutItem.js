@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { removeItemFromCart } from '../../redux/cart/cartActions';
+import { clearItemFromCart } from '../../redux/cart/cartActions';
 
 import './checkoutItemStyles.scss';
 
-const CheckoutItem = ({ item, removeItemFromCart }) => {
+const CheckoutItem = ({ item, clearItemFromCart }) => {
   const { imageUrl, name, quantity, price } = item;
 
   return (
@@ -25,7 +25,7 @@ const CheckoutItem = ({ item, removeItemFromCart }) => {
 
       <span className="price">{price}</span>
 
-      <div className="removeButton" onClick={() => removeItemFromCart(item)}>
+      <div className="removeButton" onClick={() => clearItemFromCart(item)}>
         &#10007;
       </div>
     </div>
@@ -33,7 +33,7 @@ const CheckoutItem = ({ item, removeItemFromCart }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  removeItemFromCart: item => dispatch(removeItemFromCart(item)),
+  clearItemFromCart: item => dispatch(clearItemFromCart(item)),
 });
 
 CheckoutItem.propTypes = {
@@ -43,7 +43,7 @@ CheckoutItem.propTypes = {
     quantity: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
-  removeItemFromCart: PropTypes.func.isRequired,
+  clearItemFromCart: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(CheckoutItem);
