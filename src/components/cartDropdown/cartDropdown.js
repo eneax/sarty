@@ -12,9 +12,13 @@ import CustomButton from '../customButton/customButton';
 const CartDropdown = ({ cartItems }) => (
   <div className="cartDropdown">
     <div className="cartItems">
-      {cartItems.map(cartItem => (
-        <CartItem key={cartItem.id} item={cartItem} />
-      ))}
+      {cartItems.length ? (
+        cartItems.map(cartItem => (
+          <CartItem key={cartItem.id} item={cartItem} />
+        ))
+      ) : (
+        <span className="empty-message">Your cart is empty</span>
+      )}
     </div>
     <CustomButton>GO TO CHECKOUT</CustomButton>
   </div>
