@@ -154,6 +154,22 @@ const mapStateToProps = ( state ) => ({
 export default connect(mapStateToProps)(Header);
 ```
 
+We can pass to `mapStateToProps` also a second optional parameter, called `ownProps`.
+It represents the props of the component that we're wrapping with `connect`.
+
+Example:
+
+```js
+const CollectionPage = ({ collection }) => <div />
+
+// Here, the selectCollection selector needs a part of the state depending on the URL parameter
+const mapStateToProps = (state, ownProps) => ({
+  collection: selectCollection(ownProps.match.params.collectionId)(state),
+})
+
+export default connect(mapStateToProps)(CollectionPage)
+```
+
 ### mapDispatchToProps
 
 The second argument that we pass to `connect` is the function `mapDispatchToProps`.
