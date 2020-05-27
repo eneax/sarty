@@ -19,6 +19,7 @@ const StripeCheckoutButton = ({ price }) => {
       name="Sarty Inc."
       billingAddress
       shippingAddress
+      image="https://stripe.com/img/documentation/checkout/marketplace.png"
       description={`Your total is $${price}`}
       amount={priceForStripe}
       currency="EUR"
