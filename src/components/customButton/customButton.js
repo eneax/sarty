@@ -1,22 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './customButtonStyles.scss';
 
-const CustomButton = ({
-  children,
-  isGoogleSignIn,
-  inverted,
-  ...otherProps
-}) => (
-  <button
-    type="button"
-    className={`customButton ${isGoogleSignIn ? 'googleSignIn' : ''} ${
-      inverted ? 'inverted' : ''
-    }`}
-    {...otherProps}
-  >
+import { CustomButtonContainer } from './customButtonStyles';
+
+const CustomButton = ({ children, ...props }) => (
+  <CustomButtonContainer type="button" {...props}>
     {children}
-  </button>
+  </CustomButtonContainer>
 );
 
 CustomButton.propTypes = {
