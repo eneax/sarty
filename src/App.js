@@ -8,12 +8,12 @@ import { selectCurrentUser } from './redux/user/userSelectors';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import './App.css';
-import HomePage from './pages/homepage/homepage';
-import ShopPage from './pages/shop/shop';
-import AuthPage from './pages/auth/auth';
-import CheckoutPage from './pages/checkout/checkout';
+import HomePage from './pages/homepage';
+import ShopPage from './pages/shop';
+import AuthPage from './pages/auth';
+import CheckoutPage from './pages/checkout';
 
-import Header from './components/header/header';
+import Header from './components/header';
 
 
 class App extends React.Component {
