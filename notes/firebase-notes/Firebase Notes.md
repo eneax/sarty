@@ -106,3 +106,9 @@ Keep in mind that:
 The `documentSnapshot` allows us to check if a document exists at this query using the `.exists()` property, which returns a `boolean`.
 
 We can also get the actual properties on the object by calling the `.data()` method, which returns us a JSON object of the document.
+
+## QuerySnapshot
+
+We get a `querySnapshot` from a `collectionReference` object.
+In order to check if there are any documents in the `collection`, we call the `.empty()` property which returns a boolean.
+If we want to get all the documents in the collection, we need to call the `.docs` property, which will return an array of our documents as `documentSnapshot` objects.
