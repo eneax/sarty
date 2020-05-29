@@ -3,9 +3,10 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
 import { setCurrentUser } from './redux/user/userActions';
 import { selectCurrentUser } from './redux/user/userSelectors';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import './App.css';
 import HomePage from './pages/homepage';
@@ -34,7 +35,7 @@ class App extends React.Component {
           })
         });
       } else { // if the user logs out we set the currentUser to null
-        setCurrentUser(userAuth)
+        setCurrentUser(userAuth);
       }
     });
   }

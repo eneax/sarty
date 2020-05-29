@@ -112,3 +112,35 @@ We can also get the actual properties on the object by calling the `.data()` met
 We get a `querySnapshot` from a `collectionReference` object.
 In order to check if there are any documents in the `collection`, we call the `.empty()` property which returns a boolean.
 If we want to get all the documents in the collection, we need to call the `.docs` property, which will return an array of our documents as `documentSnapshot` objects.
+
+## Automatically upload data into Firebase Firestore
+
+```js
+// Store collection data into Firestore
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey)
+
+  const batch = firestore.batch()
+  objectsToAdd.forEach((obj) => {
+    // give me a new document ref and generate a new id for it
+    const newDocumentRef = collectionRef.doc()
+    // set values for every object
+    batch.set(newDocumentRef, obj)
+  })
+
+  // fire batch request
+  return await batch.commit()
+}
+```
+
+Inside `componentDidMount`:
+
+```js
+addCollectionAndDocuments(
+  'collections',
+  collectionsArray.map(({ title, items }) => ({ title, items }))
+)
+```
