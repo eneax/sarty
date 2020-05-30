@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import CollectionItem from './collectionItem';
@@ -29,7 +30,9 @@ const PreviewContainer = styled.div`
 // component
 const CollectionPreview = ({ title, items }) => (
   <CollectionPreviewContainer>
-    <TitleContainer>{title.toUpperCase()}</TitleContainer>
+    <Link to={`/shop/${title.toLowerCase()}`}>
+      <TitleContainer>{title.toUpperCase()}</TitleContainer>
+    </Link>
     <PreviewContainer>
       {items
         .filter((item, index) => index < 4) // get only 4 items as a preview
