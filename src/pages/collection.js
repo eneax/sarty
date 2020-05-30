@@ -50,9 +50,9 @@ const mapStateToProps = (state, ownProps) => ({
 
 CollectionPage.propTypes = {
   collection: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
-    routeName: PropTypes.string.isRequired,
+    routeName: PropTypes.string,
     title: PropTypes.string.isRequired,
   }).isRequired,
 };
