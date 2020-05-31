@@ -60,7 +60,9 @@
   "keywords": [
     "javascript",
     "react",
-    "redux"
+    "redux",
+    "firebase",
+    "stripe"
   ],
   "license": "MIT",
   "repository": {
