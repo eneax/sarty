@@ -328,3 +328,46 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
 })
 ```
+
+## redux-thunk
+
+`redux-thunk` is a middleware that handles async actions. It doesn't care about action objects. Instead it handles only functions.
+
+A `thunk` is an action creator which returns a function that gets access to `dispatch` (very similar to `mapDispatchToProps`). In this way we can dispatch multiple actions and handle async code inside of it.
+
+Once `redux-thunk` is installed, example:
+
+```js
+import { ShopActionTypes } from './shopTypes'
+import {
+  firestore,
+  convertCollectionSnapshotToMap,
+} from '../../firebase/firebase.utils'
+
+export const fetchCollectionsStart = () => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_START,
+})
+
+export const fetchCollectionsSuccess = (collectionsMap) => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_SUCCESS,
+  payload: collectionsMap,
+})
+
+export const fetchCollectionsFailure = (errorMessage) => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_FAILURE,
+  payload: errorMessage,
+})
+
+export const fetchCollectionsStartAsync = () => (dispatch) => {
+  const collectionRef = firestore.collection('collections')
+  dispatch(fetchCollectionsStart())
+
+  collectionRef
+    .get()
+    .then((snapshot) => {
+      const collectionsMap = convertCollectionSnapshotToMap(snapshot)
+      dispatch(fetchCollectionsSuccess(collectionsMap))
+    })
+    .catch((error) => dispatch(fetchCollectionsFailure(error.message)))
+}
+```
