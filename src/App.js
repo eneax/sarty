@@ -8,13 +8,13 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/userActions';
 import { selectCurrentUser } from './redux/user/userSelectors';
 
-import './App.css';
 import HomePage from './pages/homepage';
 import ShopPage from './pages/shop';
 import AuthPage from './pages/auth';
 import CheckoutPage from './pages/checkout';
 
 import Header from './components/header';
+import GlobalStyle from './components/globalStyles';
 
 
 class App extends React.Component {
@@ -47,6 +47,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <GlobalStyle />
         <Header />
   
         <Switch>
